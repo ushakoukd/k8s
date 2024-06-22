@@ -11,11 +11,12 @@ spec:
     app: resources-ms
 ---
 apiVersion: apps/v1
-kind: Deployment
+kind: StatefulSet
 metadata:
   name: resources-ms
   namespace: k8s-program
 spec:
+  serviceName: "resources-ms"
   replicas: 2
   selector:
     matchLabels:
@@ -31,6 +32,7 @@ spec:
           imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 8080
+              name: resources-ms
           env:
             - name: RESOURCES_MS_NAME
               value: "resources-ms"

@@ -11,11 +11,12 @@ spec:
     app: songs-ms
 ---
 apiVersion: apps/v1
-kind: Deployment
+kind: StatefulSet
 metadata:
   name: songs-ms
   namespace: k8s-program
 spec:
+  serviceName: "songs-ms"
   replicas: 2
   selector:
     matchLabels:
@@ -31,6 +32,7 @@ spec:
           imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 8081
+              name: songs-ms
           env:
             - name: SONGS_MS_NAME
               value: "songs-ms"
@@ -43,7 +45,11 @@ spec:
           volumeMounts:
             - mountPath: /data
               name: songs-storage
-      volumes:
-        - name: songs-storage
-          persistentVolumeClaim:
-            claimName: songs-pvc
+  volumeClaimTemplates:
+    - metadata:
+        name: songs-storage
+      spec:
+        accessModes: [ "ReadWriteOnce" ]
+        resources:
+          requests:
+            storage: 1Gi
