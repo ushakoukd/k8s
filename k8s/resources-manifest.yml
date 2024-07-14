@@ -33,16 +33,6 @@ spec:
           ports:
             - containerPort: 8080
               name: resources-ms
-          env:
-            - name: RESOURCES_MS_NAME
-              value: "resources-ms"
-            - name: RESOURCES_MS_PORT
-              value: "8080"
-            - name: SONGS_MS_URL
-              value: "songs-ms"
-            - name: SONGS_MS_PORT
-              value: "8081"
-            - name: RESOURCES_DB_URL
-              value: "postgres"
-            - name: RESOURCES_DB_PORT
-              value: "5432"
+          envFrom:
+            - configMapRef:
+                name: config-map

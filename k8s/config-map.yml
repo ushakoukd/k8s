@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: config-map
+  namespace: k8s-program
+data:
+  POSTGRES_DB: "postgres"
+  POSTGRES_USER: "postgres"
+  POSTGRES_PASSWORD: "postgres"
+  RESOURCES_MS_NAME: "resources-ms"
+  RESOURCES_MS_PORT: "8080"
+  SONGS_MS_URL: "songs-ms"
+  SONGS_MS_PORT: "8081"
+  RESOURCES_DB_URL: "postgres"
+  RESOURCES_DB_PORT: "5432"
