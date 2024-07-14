@@ -73,3 +73,6 @@ spec:
         resources:
           requests:
             storage: 1Gi
+            
+# kubectl rollout history statefulset songs-ms -n k8s-program
+# kubectl rollout undo statefulset songs-ms -n k8s-program
