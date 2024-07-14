@@ -21,6 +21,8 @@ spec:
   selector:
     matchLabels:
       app: songs-ms
+  updateStrategy:
+    type: RollingUpdate
   template:
     metadata:
       labels:
